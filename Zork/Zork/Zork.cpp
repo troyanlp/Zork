@@ -1,13 +1,10 @@
 // Zork.cpp : Defines the entry point for the console application.
 //
-
-#include "stdafx.h"
-
 #include <iostream>
 #include <string>
 #include <vector>
-#include <stdio.h>
 #include <conio.h>
+#include "world.h"
 
 using namespace std;
 
@@ -54,11 +51,11 @@ int main()
 				player_input += key;
 				cout << key;
 			}
-			else
-				Tokenize(player_input, args);
+			else{}
+				//Tokenize(player_input, args);
 		}
 
-		if (args.size() > 0 && Same(args[0], "quit"))
+		/*if (args.size() > 0 && Same(args[0], "quit"))
 			break;
 
 		if (my_world.Tick(args) == false)
@@ -69,7 +66,7 @@ int main()
 			args.clear();
 			player_input = "";
 			cout << "> ";
-		}
+		}*/
 	}
 
 	cout << "\nThanks for playing, Bye!\n";
