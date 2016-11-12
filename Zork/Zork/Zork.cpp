@@ -28,6 +28,8 @@ int main()
 
 	cout << "Welcome to The Legend of Zork!!\n";
 	cout << "----------------\n";
+
+	World my_world;
 	
 	args.push_back("look");
 
