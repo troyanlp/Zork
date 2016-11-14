@@ -40,10 +40,11 @@ int main()
 				if (player_input.length() > 0)
 				{
 					player_input.pop_back();
-					//cout << BACKSPACE;
-					cout << '\b';
+					cout << BACKSPACE;
 					cout << " ";
-					cout << '\b';
+					/*cout << '\r';
+					cout << "You wrote: " << player_input;
+					cout << '\r';*/
 				}
 			}
 			else if (key != '\r') // return
@@ -51,8 +52,16 @@ int main()
 				player_input += key;
 				cout << key;
 			}
-			else{}
+			else {
 				//Tokenize(player_input, args);
+				args.push_back(player_input);
+				/*cout << '\n';
+				cout << "You wrote: " << player_input;
+				cout << '\n';
+				cout << "The args are: " << args[0] << " and " << args[1];
+				cout << '\n';*/
+			}
+				
 		}
 
 		/*if (args.size() > 0 && Same(args[0], "quit"))
