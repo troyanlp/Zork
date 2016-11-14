@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <conio.h>
+#include "Globals.h"
 #include "world.h"
 
 using namespace std;
@@ -53,8 +54,12 @@ int main()
 				cout << key;
 			}
 			else {
-				//Tokenize(player_input, args);
-				args.push_back(player_input);
+				inputToArguments(player_input, args);
+				cout << '\n';
+				cout << "Los argumentos son: " << args.size() << "\n";
+				for (int i = 0; i < args.size(); ++i)
+					cout << args[i] << '\n';
+				//args.push_back(player_input);
 				/*cout << '\n';
 				cout << "You wrote: " << player_input;
 				cout << '\n';
@@ -64,18 +69,18 @@ int main()
 				
 		}
 
-		/*if (args.size() > 0 && Same(args[0], "quit"))
+		if (args.size() > 0 && Same(args[0], "quit"))
 			break;
 
-		if (my_world.Tick(args) == false)
+		/*if (my_world.Tick(args) == false)
 			cout << "\nSorry, I do not understand your command.\n";
-
+		*/
 		if (args.size() > 0)
 		{
 			args.clear();
 			player_input = "";
 			cout << "> ";
-		}*/
+		}
 	}
 
 	cout << "\nThanks for playing, Bye!\n";
