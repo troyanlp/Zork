@@ -34,7 +34,7 @@ public:
 	EntityType type;
 	string name;
 	string description;
-	int weight;
+	float weight;
 
 	Entity* parent;
 	list<Entity*> container;

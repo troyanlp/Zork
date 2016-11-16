@@ -53,6 +53,13 @@ bool Player::Go(const vector<string>& args)
 
 	if (exit->locked)
 	{
+		if (exit->puzzle) {
+			Item* item = (Item*)Find("Button", ITEM);
+			if (item->RightWeigth()) {
+				UnLock(args);
+			}
+		}
+		
 		cout << "\nThat exit is locked.\n";
 		return false;
 	}
@@ -175,7 +182,8 @@ void Player::Inventory() const
 
 	for (list<Entity*>::const_iterator it = items.begin(); it != items.cend(); ++it)
 	{
-		cout << "\n" << (*it)->name;
+		cout << "\n" << (*it)->name ;
+		if ((*it)->weight != 0) cout << " (" << (*it)->weight << "Kg)";
 	}
 
 	cout << "\n";
@@ -228,7 +236,6 @@ bool Player::UnLock(const vector<string>& args)
 bool Player::Read(const vector<string>& args) {
 	if (args.size() > 1)
 	{
-		cout << "Hola";
 		for (list<Entity*>::const_iterator it = parent->container.begin(); it != parent->container.cend(); ++it)
 		{
 			//cout << "The entity is: " << (*it)->name << "\n";

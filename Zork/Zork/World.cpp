@@ -22,8 +22,10 @@ World::World()
 	ex2->locked = true;
 	Exit* ex3 = new Exit("west", "east", "Little path", mainRoom, chestRoom); //From the main room to the chest room
 	Exit* ex4 = new Exit("north", "south", "Stairs", chestRoom, enemyRoom); //From the chest room to the enemy room
+	ex4->locked = true;
 	Exit* ex5 = new Exit("east", "west", "Little path", mainRoom, transitionRoom); //From the main room to the transition room
 	ex5->locked = true;
+	ex5->puzzle = true;
 	Exit* ex6 = new Exit("down", "up", "Stairs", transitionRoom, bossRoom); //From the transition room to the boss room
 	ex6->locked = true;
 
@@ -53,6 +55,7 @@ World::World()
 	Item* mailbox = new Item("Mailbox", "Looks like it might contain something.", outside);
 	Item* key1 = new Item("Key", "Old iron key.", mailbox);
 	ex1->key = key1;
+	key1->weight = 0.5;
 	Item* note = new Item("Note", "A piece of paper with something written on it", mailbox);
 	note->readable = true;
 	note->text = "Welcome to The Legend of Zork! \n";
@@ -60,6 +63,7 @@ World::World()
 	note->text += "You can LOOK, LOOK X, PICK X, DROP X, PUT X IN Y, READ X, DIG X, TALK TO X, UNLOCK DIRECTION WITH X, PUT X ON Y (to place something on top of something else) \n";
 	note->text += "Have fun! :) \n";
 	Item* shovel = new Item("Shovel", "A dirty shovel.", outside);
+	shovel->weight = 2;
 	Item* box = new Item("Box", "A box.", mainRoom);
 	Item* instructions = new Item("Instructions", "A piece of paper with something written on it", box);
 	instructions->readable = true;
@@ -67,6 +71,7 @@ World::World()
 	instructions->text += "Everything has a weight... Do your math! ;)\n";
 	Item* key2 = new Item("Key", "Old iron key.", box);
 	ex2->key = key2;
+	key2->weight = 0.5;
 	Item* button = new Item("Button", "A button with '5Kg' written on it", mainRoom);
 	button->pickable = false;
 	Item* dirt = new Item("Dirt", "A pile of dirt. Looks like there could be something beneath",gardenRoom);
@@ -74,7 +79,9 @@ World::World()
 	Item* chest = new Item("Chest", "A shiny chest.", chestRoom);
 	chest->pickable = false;
 	Item* sword = new Item("Sword", "A sharp sword.", chest);
-	Item* key3 = new Item("Key", "A big key with 'BOSS' written on it.", mailbox);
+	sword->weight = 3;
+	Item* key3 = new Item("BossKey", "A big key with 'BOSS' written on it.", mailbox);
+	key1->weight = 0.5;
 	ex6->key = key3;
 
 	entities.push_back(mailbox);

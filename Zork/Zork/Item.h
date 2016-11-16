@@ -22,6 +22,7 @@ public:
 	void Look() const;
 	int GetValue() const;
 	void Read() const;
+	bool RightWeigth() const;
 
 public:
 	int min_value;

@@ -24,4 +24,5 @@ public:
 	string opposite_name;
 	Room* destination;
 	Entity* key;
+	bool puzzle;
 };
