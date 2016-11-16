@@ -1,9 +1,9 @@
 #include <iostream>
-#include "globals.h"
-#include "room.h"
-#include "exit.h"
-#include "item.h"
-#include "creature.h"
+#include "Globals.h"
+#include "Room.h"
+#include "Exit.h"
+#include "Item.h"
+#include "Creature.h"
 
 // ----------------------------------------------------
 Creature::Creature(const char* title, const char* description, Room* room) :
@@ -279,7 +279,7 @@ bool Creature::IsAlive() const
 {
 	return hit_points > 0;
 }
-
+/*
 // ----------------------------------------------------
 void Creature::Tick()
 {
@@ -344,7 +344,7 @@ int Creature::ReceiveAttack(int damage)
 
 	return received;
 }
-
+*/
 // ----------------------------------------------------
 void Creature::Die()
 {

@@ -1,6 +1,11 @@
+#pragma once
 #include <string>
 #include <list>
-#include "entity.h"
+#include "Entity.h"
+#include "Globals.h"
+#include "Exit.h"
+#include "Item.h"
+#include "Creature.h"
 
 class Exit;
 class Item;
@@ -18,4 +23,5 @@ public:
 	Exit* GetExit(const string& direction) const;
 
 public:
+
 };

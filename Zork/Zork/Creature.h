@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "entity.h"
+#include "Entity.h"
 
 class Room;
 class Item;
@@ -24,11 +24,11 @@ public:
 	virtual bool AutoEquip();
 	virtual bool Lock(const vector<string>& args);
 	virtual bool UnLock(const vector<string>& args);
-	virtual void Tick();
+	//virtual void Tick();
 
-	virtual bool Attack(const vector<string>& args);
-	virtual int MakeAttack();
-	virtual int ReceiveAttack(int damage);
+	//virtual bool Attack(const vector<string>& args);
+	//virtual int MakeAttack();
+	//virtual int ReceiveAttack(int damage);
 	virtual void Die();
 	virtual bool Loot(const vector<string>& args);
 	virtual void Stats() const;

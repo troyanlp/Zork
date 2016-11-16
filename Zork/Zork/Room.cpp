@@ -1,9 +1,5 @@
 #include <iostream>
-#include "globals.h"
-#include "exit.h"
-#include "item.h"
-#include "creature.h"
-#include "room.h"
+#include "Room.h"
 
 // ----------------------------------------------------
 Room::Room(const char* title, const char* description) :

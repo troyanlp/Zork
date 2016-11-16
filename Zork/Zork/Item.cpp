@@ -1,8 +1,8 @@
 #include <iostream>
-#include "room.h"
-#include "exit.h"
-#include "globals.h"
-#include "item.h"
+#include "Room.h"
+#include "Exit.h"
+#include "Globals.h"
+#include "Item.h"
 
 // ----------------------------------------------------
 Item::Item(const char* title, const char* description, Entity* parent, ItemType item_type) :
@@ -36,5 +36,6 @@ void Item::Look() const
 // ----------------------------------------------------
 int Item::GetValue() const
 {
-	return Roll(min_value, max_value);
+	return 0;
+	//return Roll(min_value, max_value);
 }

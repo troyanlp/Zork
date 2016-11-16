@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "entity.h"
+#include "Entity.h"
 
 class Room;
 
