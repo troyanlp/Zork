@@ -18,12 +18,6 @@ bool Same(const string& a, const char* b)
 {
 	return _stricmp(a.c_str(), b) == 0;
 }
-/*
-int Roll(int min, int max)
-{
-	return (max > 0) ? min + (rand() % (max - min)) : 0;
-}
-*/
 
 void inputToArguments(const string& line, vector<string>& arguments)
 {

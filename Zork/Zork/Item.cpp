@@ -10,6 +10,8 @@ Item::Item(const char* title, const char* description, Entity* parent, ItemType 
 {
 	type = ITEM;
 	min_value = max_value = 0;
+	pickable = true;
+	readable = false;
 }
 
 // ----------------------------------------------------
@@ -38,4 +40,15 @@ int Item::GetValue() const
 {
 	return 0;
 	//return Roll(min_value, max_value);
+}
+
+// ----------------------------------------------------
+void Item::Read() const
+{
+	if (readable) {
+		cout << name << "says:\n";
+		cout << text;
+	} else{
+		cout << "You can't read " << name;
+	}
 }

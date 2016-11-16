@@ -55,23 +55,17 @@ int main()
 			}
 			else {
 				inputToArguments(player_input, args);
-				//cout << '\n';
-				//cout << "Los argumentos son: " << args.size() << "\n";
-				//for (int i = 0; i < args.size(); ++i)
-					//cout << args[i] << '\n';
-				
-				//args.push_back(player_input);
-				/*cout << '\n';
-				cout << "You wrote: " << player_input;
-				cout << '\n';
-				cout << "The args are: " << args[0] << " and " << args[1];
-				cout << '\n';*/
 			}
 				
 		}
 
-		if (args.size() > 0 && Same(args[0], "quit"))
+		if (args.size() > 0 && Same(args[0], "quit")) {
+			cout << "Before destroying world";
+			my_world.~World();
+			cout << "After destroying world";
 			break;
+		}
+			
 
 		if (my_world.Tick(args) == false)
 			cout << "\nSorry, I do not understand your command.\n";

@@ -101,9 +101,15 @@ bool Player::Take(const vector<string>& args)
 			cout << "\nThere is no item here with that name.\n";
 			return false;
 		}
-
-		cout << "\nYou take " << item->name << ".\n";
-		item->ChangeParentTo(this);
+		if (item->pickable) {
+			cout << "\nYou take " << item->name << ".\n";
+			item->ChangeParentTo(this);
+		}
+		else {
+			cout << "\nYou can't take " << item->name << ".\n";
+		}
+		
+		
 	}
 
 	return false;
@@ -169,12 +175,7 @@ void Player::Inventory() const
 
 	for (list<Entity*>::const_iterator it = items.begin(); it != items.cend(); ++it)
 	{
-		if (*it == weapon)
-			cout << "\n" << (*it)->name << " (as weapon)";
-		else if (*it == armour)
-			cout << "\n" << (*it)->name << " (as armour)";
-		else
-			cout << "\n" << (*it)->name;
+		cout << "\n" << (*it)->name;
 	}
 
 	cout << "\n";
@@ -221,4 +222,44 @@ bool Player::UnLock(const vector<string>& args)
 	item->~Item();
 
 	return true;
+}
+
+// ----------------------------------------------------
+bool Player::Read(const vector<string>& args) {
+	if (args.size() > 1)
+	{
+		cout << "Hola";
+		for (list<Entity*>::const_iterator it = parent->container.begin(); it != parent->container.cend(); ++it)
+		{
+			//cout << "The entity is: " << (*it)->name << "\n";
+			if (Same((*it)->name, "Player")) {
+				for (list<Entity*>::const_iterator itt = (*it)->container.begin(); itt != (*it)->container.cend(); ++itt)
+				{
+					if (Same((*itt)->name, args[1]))
+					{
+						cout << "The entity from inventory is: " << (*it)->name;
+						(*itt)->Read();
+						//cout << "The entity is: " << (*it)->name;
+						return true;
+					}
+				}
+			}
+			else {
+				if (Same((*it)->name, args[1]))
+				{
+					cout << "The entity is: " << (*it)->name;
+					(*it)->Read();
+					cout << "The entity is: " << (*it)->name;
+					return true;
+				}
+			}
+			
+			
+		}
+	}
+	else
+	{
+		return false;
+	}
+	return false;
 }

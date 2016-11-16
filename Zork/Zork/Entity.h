@@ -28,6 +28,7 @@ public:
 	Entity* Find(EntityType type) const;
 	Entity* Find(const string& name, EntityType type) const;
 	void	FindAll(EntityType type, list<Entity*>& list_to_fill) const;
+	virtual void Read() const;
 
 public:
 	EntityType type;

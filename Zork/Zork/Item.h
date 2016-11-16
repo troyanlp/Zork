@@ -21,9 +21,13 @@ public:
 
 	void Look() const;
 	int GetValue() const;
+	void Read() const;
 
 public:
 	int min_value;
 	int max_value;
 	ItemType item_type;
+	bool pickable;
+	bool readable;
+	string text;
 };

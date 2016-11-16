@@ -20,7 +20,7 @@ World::World()
 	ex1->locked = true;
 	Exit* ex2 = new Exit("north", "south", "Stairs", mainRoom, gardenRoom); //From the main room to the garden
 	ex2->locked = true;
-	Exit* ex3 = new Exit("east", "west", "Little path", mainRoom, chestRoom); //From the main room to the chest room
+	Exit* ex3 = new Exit("west", "east", "Little path", mainRoom, chestRoom); //From the main room to the chest room
 	Exit* ex4 = new Exit("north", "south", "Stairs", chestRoom, enemyRoom); //From the chest room to the enemy room
 	Exit* ex5 = new Exit("east", "west", "Little path", mainRoom, transitionRoom); //From the main room to the transition room
 	ex5->locked = true;
@@ -43,18 +43,36 @@ World::World()
 	entities.push_back(ex6);
 
 	// Creatures ----
+	Creature* ron = new Creature("Ron", "A smiley dwarf. He's so little! He could fit into your pocket!", enemyRoom);
+	Creature* boss = new Creature("Nosferatu", "A vampire. The boss!", bossRoom);
+
+	entities.push_back(ron);
+	entities.push_back(boss);
 
 	// Items -----
 	Item* mailbox = new Item("Mailbox", "Looks like it might contain something.", outside);
 	Item* key1 = new Item("Key", "Old iron key.", mailbox);
 	ex1->key = key1;
 	Item* note = new Item("Note", "A piece of paper with something written on it", mailbox);
+	note->readable = true;
+	note->text = "Welcome to The Legend of Zork! \n";
+	note->text += "Your goal is to kill Nosferatu, the boss of this house \n";
+	note->text += "You can LOOK, LOOK X, PICK X, DROP X, PUT X IN Y, READ X, DIG X, TALK TO X, UNLOCK DIRECTION WITH X, PUT X ON Y (to place something on top of something else) \n";
+	note->text += "Have fun! :) \n";
 	Item* shovel = new Item("Shovel", "A dirty shovel.", outside);
 	Item* box = new Item("Box", "A box.", mainRoom);
+	Item* instructions = new Item("Instructions", "A piece of paper with something written on it", box);
+	instructions->readable = true;
+	instructions->text = "To open de East Exit you have to put something that weights 5Kg on the button.\n";
+	instructions->text += "Everything has a weight... Do your math! ;)\n";
 	Item* key2 = new Item("Key", "Old iron key.", box);
 	ex2->key = key2;
 	Item* button = new Item("Button", "A button with '5Kg' written on it", mainRoom);
+	button->pickable = false;
+	Item* dirt = new Item("Dirt", "A pile of dirt. Looks like there could be something beneath",gardenRoom);
+	dirt->pickable = false;
 	Item* chest = new Item("Chest", "A shiny chest.", chestRoom);
+	chest->pickable = false;
 	Item* sword = new Item("Sword", "A sharp sword.", chest);
 	Item* key3 = new Item("Key", "A big key with 'BOSS' written on it.", mailbox);
 	ex6->key = key3;
@@ -64,15 +82,17 @@ World::World()
 	entities.push_back(note);
 	entities.push_back(shovel);
 	entities.push_back(box);
+	entities.push_back(instructions);
 	entities.push_back(key2);
 	entities.push_back(button);
+	entities.push_back(dirt);
 	entities.push_back(chest);
 	entities.push_back(sword);
 	entities.push_back(key3);
 	
 
 	// Player ----
-	player = new Player("Hero", "You are a thief looking for gold!", outside);
+	player = new Player("Player", "You are a thief looking for gold!", outside);
 	entities.push_back(player);
 
 }
@@ -80,8 +100,10 @@ World::World()
 // ----------------------------------------------------
 World::~World()
 {
-	for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it)
+	for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it) {
+		cout << (*it)->name << "\n";
 		delete *it;
+	}
 
 	entities.clear();
 }
@@ -178,6 +200,10 @@ bool World::ParseCommand(vector<string>& args)
 			else if (Same(args[0], "drop") || Same(args[0], "put"))
 			{
 				player->Drop(args);
+			}
+			else if (Same(args[0], "read"))
+			{
+				player->Read(args);
 			}
 			break;
 		case 3: //Commands with two argument

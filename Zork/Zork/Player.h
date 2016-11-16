@@ -18,5 +18,6 @@ public:
 	bool Drop(const vector<string>& args);
 	void Inventory() const;
 	bool UnLock(const vector<string>& args);
+	bool Read(const vector<string>& args);
 };
 
